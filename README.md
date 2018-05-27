@@ -1,4 +1,4 @@
-# star-defender
+# Star Defender
 
 
 
