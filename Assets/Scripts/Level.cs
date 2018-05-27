@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Level
+struct Level
 {
     [SerializeField]
-    private int maxEnemies = 20;
+    private int maxEnemies;
     [SerializeField]
-    private float enemySpawnInterval = 0.2f;
+    private float enemySpawnInterval;
     [SerializeField]
-    private float maxEnemySpeed = 0.2f;
+    private float maxEnemySpeed;
     [SerializeField]
     private List<float> sizeProbabilities;
     public int MaxEnemies
