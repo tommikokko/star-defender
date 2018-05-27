@@ -10,6 +10,7 @@ public class Enemy : Entity
 
     public override void DecreaseHealth()
     {
+        base.DecreaseHealth();
         size -= Vector3.one * sizeScaler;
         transform.localScale = size;
         Destroyed = true;
