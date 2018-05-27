@@ -6,13 +6,28 @@ public class Enemy : Entity
 {
     float speed = 1;
     GameObject homeBase;
-    public float sizeScaler = 0.2f;
+    float sizeScaler = 0.4f;
 
     public override void DecreaseHealth()
     {
-        //base.DecreaseHealth();
         size -= Vector3.one * sizeScaler;
         transform.localScale = size;
+        Destroyed = true;
+    }
+    void Start()
+    {
+        LevelController.Instance.OnNuke += DecreaseHealth;
+        homeBase = LevelController.Instance.HomeBase;
+        health = LevelController.Instance.GetEnemySize();
+        transform.localScale = new Vector3(health * sizeScaler, health * sizeScaler, health * sizeScaler);
+        size = transform.localScale;
+        speed = LevelController.Instance.GetMaxEnemySpeed() / (float)health;
+        growSpeed = 100;
+        
+        if (homeBase != null)
+        { 
+            transform.LookAt(homeBase.transform);
+        }
     }
 
     void Update()
@@ -27,26 +42,20 @@ public class Enemy : Entity
             Destroy();
         }
     }
+    public bool Destroyed = false;
+    public override void Destroy()
+    {
+        Destroyed = true;
+        LevelController.Instance.OnNuke -= DecreaseHealth;
+        ShieldButton.Instance.AddEnemyDestroyed();
+        base.Destroy();
+    }
 
     void OnDestroy()
     {
         if(LevelController.Instance) LevelController.Instance.DestroyEnemy(this);
     }
 
-    void Start()
-    {
-        homeBase = LevelController.Instance.HomeBase;
-        health = LevelController.Instance.GetEnemySize();
-        transform.localScale = new Vector3(health * sizeScaler, health * sizeScaler, health * sizeScaler);
-        size = transform.localScale;
-        speed = LevelController.Instance.GetMaxEnemySpeed() / (float)health;
-        growSpeed = 100;
-        
-        if (homeBase != null)
-        { 
-            transform.LookAt(homeBase.transform);
-        }
-    }
 
     void OnTriggerEnter(Collider collision)
     {

@@ -7,7 +7,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     protected int health = 20;
     protected int shield = 0;
-    [SerializeField]
     protected int maxShield;
     protected float growSpeed = 0.4f;
 	protected Vector3 size = Vector3.one;    
@@ -19,7 +18,8 @@ public abstract class Entity : MonoBehaviour
             return transform.localScale != size;
         }
     }
-    public void AddShield()
+
+    public virtual void AddShield()
     {
         shield = maxShield;
     }

@@ -13,6 +13,12 @@ struct Level
     private float maxEnemySpeed;
     [SerializeField]
     private List<float> sizeProbabilities;
+    [SerializeField]
+    private float nukeTimeInterval;
+    [SerializeField]
+    private int maxShield;
+    [SerializeField]
+    private int enemiesToDestroyForShield;
     public int MaxEnemies
     {
         get
@@ -41,5 +47,27 @@ struct Level
             return enemySpawnInterval;
         }
     }
+
+    public float NukeTimeInterval
+    {
+        get 
+        { 
+            return nukeTimeInterval;
+        }
+    }
+    public int MaxShield
+    {
+        get 
+        { 
+            return maxShield;
+        }
+    }    
+    public int EnemiesToDestroyForShield
+    {
+        get 
+        { 
+            return enemiesToDestroyForShield;
+        }
+    }        
 
 }

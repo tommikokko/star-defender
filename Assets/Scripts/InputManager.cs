@@ -23,6 +23,10 @@ public class InputManager : MonoBehaviour {
 				{
 					Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
 					enemy.DecreaseHealth();
+                    if(enemy.Destroyed || enemy == null)  {
+                        Debug.Log("Destroyed enemy");
+                        ScoreController.Instance.AddScore();
+                    }
 				}
             }
         }

@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour
 
         Init();
     }
-
+    
     void Init()
     {
         HomeBase = Instantiate(homeBase, transform.position, Quaternion.identity, transform);
@@ -74,14 +74,52 @@ public class LevelController : MonoBehaviour
     {
         return level.MaxEnemySpeed;
     }
+
+    public delegate void OnNukeHandler();
+    public event OnNukeHandler OnNuke;
+    public delegate void OnResetHandler();
+    public event OnResetHandler OnReset;
+
     public void Restart()
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i]) Destroy(enemies[i]);
+            if (enemies[i]) enemies[i].GetComponent<Enemy>().Destroy();
         }
         enemies.Clear();
         spawners.Clear();
+        DoReset();
+        ScoreController.Instance.Reset();
+
         Init();
+    }
+    public void DoNuke()
+    {
+        OnNuke();
+    }
+
+    public void DoShield()
+    {
+        homeBase.GetComponent<Entity>().AddShield();
+    }
+
+    public float GetNukeTimeInterval()
+    {
+        return level.NukeTimeInterval;
+    }
+
+    public int GetMaxShield()
+    {
+        return level.MaxShield;
+    }
+
+    public void DoReset()
+    {
+        OnReset();
+    }
+
+    public int GetEnemiesToDestroyForShield()
+    {
+        return level.EnemiesToDestroyForShield;
     }
 }
