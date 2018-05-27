@@ -19,11 +19,17 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
+    /* 
+    *   Add shield to entities
+    */
     public virtual void AddShield()
     {
         shield = maxShield;
     }
 
+    /* 
+    *   Decrease health of an entity, override and use this as a base for health
+    */
     public virtual void DecreaseHealth()
     {
         if (shield > 0)
@@ -41,6 +47,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void Destroy() { 
         Destroy(gameObject);
     }
+
 	protected virtual void FixedUpdate () 
     {
 		if(Growing)

@@ -23,7 +23,7 @@ public class ShieldButton : MonoBehaviour {
 		 if (Instance != this) Destroy(this);
 	}
 	
-	// Use this for initialization
+	// Clicking the shield button will activate a shield around home base, if the button is interactable
 	public void OnClickShield(){
 		LevelController.Instance.HomeBase.GetComponent<HomeBase>().AddShield();
 		shieldButton.interactable = false;
@@ -38,6 +38,9 @@ public class ShieldButton : MonoBehaviour {
 		shieldBackground.fillAmount = 0;
 	}
 
+	/* 
+	* Add destroyed enemies to fill the shield buttons meter
+	*/
 	public void AddEnemyDestroyed()
 	{
 		if(!shieldButton.interactable && !LevelController.Instance.HomeBase.GetComponent<HomeBase>().ShieldActive)
@@ -53,6 +56,7 @@ public class ShieldButton : MonoBehaviour {
 		}
 	}
 	
+	// Reset
 	public void StartOver()
 	{
 		LevelController.Instance.OnReset -= Start;

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class ScoreController : MonoBehaviour
 {
 	private static ScoreController instance;
-	public static ScoreController Instance {
-		get {
+	public static ScoreController Instance 
+	{
+		get
+		{
 			if (instance == null) instance = Component.FindObjectOfType<ScoreController>();
 			return instance;
 		}
@@ -20,6 +22,7 @@ public class ScoreController : MonoBehaviour
 
     private int baseScore = 0;
 	private int highScore = 0;
+	
 	void Awake() {
 		if (Instance != this) Destroy(this);
 		highScore = PlayerPrefs.GetInt("Score");

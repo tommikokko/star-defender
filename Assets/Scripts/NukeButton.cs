@@ -12,6 +12,7 @@ public class NukeButton : MonoBehaviour {
 	[SerializeField]
 	private Image nukeImage;
 	private float nukeTimeInterval;
+
 	void Start()
 	{
 		nukeButton.interactable = false;
@@ -19,6 +20,7 @@ public class NukeButton : MonoBehaviour {
 		nukeTimeInterval = LevelController.Instance.GetNukeTimeInterval();
 		LevelController.Instance.OnReset += StartOver;
 	}
+	
 	public void OnClick()
 	{
 		LevelController.Instance.DoNuke();

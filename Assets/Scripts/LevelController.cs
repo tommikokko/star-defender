@@ -74,12 +74,19 @@ public class LevelController : MonoBehaviour
     {
         return level.MaxEnemySpeed;
     }
+    
+    /* 
+    * Delegates and events for nuke and reset
+    */
 
     public delegate void OnNukeHandler();
     public event OnNukeHandler OnNuke;
     public delegate void OnResetHandler();
     public event OnResetHandler OnReset;
 
+    /* 
+    * Restart level
+    */
     public void Restart()
     {
         for (int i = 0; i < enemies.Count; i++)

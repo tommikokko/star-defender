@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+*   Level structure.
+*/
 [System.Serializable]
 struct Level
 {

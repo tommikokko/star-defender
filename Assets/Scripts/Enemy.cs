@@ -8,13 +8,7 @@ public class Enemy : Entity
     GameObject homeBase;
     float sizeScaler = 0.4f;
 
-    public override void DecreaseHealth()
-    {
-        base.DecreaseHealth();
-        size -= Vector3.one * sizeScaler;
-        transform.localScale = size;
-        Destroyed = true;
-    }
+    
     void Start()
     {
         LevelController.Instance.OnNuke += DecreaseHealth;
@@ -31,6 +25,14 @@ public class Enemy : Entity
         }
     }
 
+    public override void DecreaseHealth()
+    {
+        base.DecreaseHealth();
+        size -= Vector3.one * sizeScaler;
+        transform.localScale = size;
+        Destroyed = true;
+    }
+
     void Update()
     {
         float step = Time.deltaTime * speed;
@@ -43,7 +45,10 @@ public class Enemy : Entity
             Destroy();
         }
     }
+
     public bool Destroyed = false;
+
+    // Destroy the enemy and remove it from OnNuke delegate
     public override void Destroy()
     {
         Destroyed = true;
@@ -56,7 +61,6 @@ public class Enemy : Entity
     {
         if(LevelController.Instance) LevelController.Instance.DestroyEnemy(this);
     }
-
 
     void OnTriggerEnter(Collider collision)
     {

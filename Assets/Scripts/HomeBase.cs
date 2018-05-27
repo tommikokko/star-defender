@@ -38,6 +38,7 @@ public class HomeBase : Entity {
 		base.AddShield();
 		shieldGO.SetActive(true);
 	}
+	
 	public bool ShieldActive
 	{
 		get { return shieldGO.activeInHierarchy; }

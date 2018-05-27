@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 	[SerializeField]
 	private GameObject enemyPrefab;
-	// Use this for initialization
-
+	
+	/*
+	* Use this to swapn enemies 
+	*/
 	public GameObject SpawnEnemy()
 	{
 		return Instantiate(enemyPrefab, transform.position, transform.rotation);
