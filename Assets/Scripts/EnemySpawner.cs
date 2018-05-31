@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour {
 	private GameObject enemyPrefab;
 	
 	/*
-	* Use this to swapn enemies 
+	* Use this to spawn enemies 
 	*/
 	public GameObject SpawnEnemy()
 	{
